@@ -8,6 +8,9 @@ function getURLsFromHTML(htmlBody, baseURL) {
   for (const linkElement of linkElements) {
     const href = linkElement.href
     const isAbsoluteURL = href.startsWith('http')
+    const isValidURL = href.startsWith('http') || href.startsWith('/')
+
+    if(!isValidURL) return urls
 
     if(!isAbsoluteURL) {
       urls.push(`${baseURL}${href}`)
